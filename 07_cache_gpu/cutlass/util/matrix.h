@@ -369,87 +369,87 @@ public:
 //    }
 
 
-    //-----------------------------------------------------------------------------
-    // Floating point "almost-equal" utilities
-    //-----------------------------------------------------------------------------
-
-    static bool almost_equal_ulps(half_t a, half_t b, int max_ulps)
-    {
-        if (a == b)
-            return true;
-
-        int32_t int_diff = abs(a.raw() - b.raw());
-        if (int_diff <= max_ulps)
-            return true;
-        return false;
-    }
-
-
-    static bool almost_equal_ulps(float a, float b, int max_ulps)
-    {
-        if (a == b)
-            return true;
-        int32_t int_diff = abs(*(int32_t*)&a - *(int32_t*)&b);
-        if (int_diff <= max_ulps)
-            return true;
-        return false;
-    }
-
-
-    static bool almost_equal_ulps(double a, double b, int max_ulps)
-    {
-        if (a == b)
-            return true;
-        int64_t int_diff = abs(*(int64_t*)&a - *(int64_t*)&b);
-        if (int_diff <= max_ulps)
-            return true;
-        return false;
-    }
-
-    static bool almost_equal_ulps(int32_t a, int32_t b, int max_ulps)
-    {
-        return (a == b);
-    }
-
-
-    //-----------------------------------------------------------------------------
-    // matrix operations
-    //-----------------------------------------------------------------------------
-
-
-    /**
-     * Returns matrix equality
-     */
-    bool operator==(const matrix<value_t> &mat) const
-    {
-        int max_ulps = 30;
-
-        if (_m != mat._m || _n != mat._n)
-        {
-            fprintf(stderr, "Error: dimension mismatch during matrix comparison.\n"); exit(1);
-        }
-
-        for (int j = 0; j < _n; j++)
-        {
-            for (int i = 0; i < _m; i++)
-            {
-                if (!almost_equal_ulps(_h_data[i + j * _m], mat._h_data[i + j * _m], max_ulps))
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-
-    /**
-     * Returns matrix inequality
-     */
-    bool operator!=(const matrix<value_t> &mat) const
-    {
-        return !(*this == mat);
-    }
+//    //-----------------------------------------------------------------------------
+//    // Floating point "almost-equal" utilities
+//    //-----------------------------------------------------------------------------
+//
+//    static bool almost_equal_ulps(half_t a, half_t b, int max_ulps)
+//    {
+//        if (a == b)
+//            return true;
+//
+//        int32_t int_diff = abs(a.raw() - b.raw());
+//        if (int_diff <= max_ulps)
+//            return true;
+//        return false;
+//    }
+//
+//
+//    static bool almost_equal_ulps(float a, float b, int max_ulps)
+//    {
+//        if (a == b)
+//            return true;
+//        int32_t int_diff = abs(*(int32_t*)&a - *(int32_t*)&b);
+//        if (int_diff <= max_ulps)
+//            return true;
+//        return false;
+//    }
+//
+//
+//    static bool almost_equal_ulps(double a, double b, int max_ulps)
+//    {
+//        if (a == b)
+//            return true;
+//        int64_t int_diff = abs(*(int64_t*)&a - *(int64_t*)&b);
+//        if (int_diff <= max_ulps)
+//            return true;
+//        return false;
+//    }
+//
+//    static bool almost_equal_ulps(int32_t a, int32_t b, int max_ulps)
+//    {
+//        return (a == b);
+//    }
+//
+//
+//    //-----------------------------------------------------------------------------
+//    // matrix operations
+//    //-----------------------------------------------------------------------------
+//
+//
+//    /**
+//     * Returns matrix equality
+//     */
+//    bool operator==(const matrix<value_t> &mat) const
+//    {
+//        int max_ulps = 30;
+//
+//        if (_m != mat._m || _n != mat._n)
+//        {
+//            fprintf(stderr, "Error: dimension mismatch during matrix comparison.\n"); exit(1);
+//        }
+//
+//        for (int j = 0; j < _n; j++)
+//        {
+//            for (int i = 0; i < _m; i++)
+//            {
+//                if (!almost_equal_ulps(_h_data[i + j * _m], mat._h_data[i + j * _m], max_ulps))
+//                {
+//                    return false;
+//                }
+//            }
+//        }
+//        return true;
+//    }
+//
+//
+//    /**
+//     * Returns matrix inequality
+//     */
+//    bool operator!=(const matrix<value_t> &mat) const
+//    {
+//        return !(*this == mat);
+//    }
 
 
     /**
