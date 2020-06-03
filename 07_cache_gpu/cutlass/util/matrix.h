@@ -194,22 +194,22 @@ public:
         }
     }
 
-    /**
-     * Get host data pointer
-     */
-    value_t* h_data()
-    {
-        return _h_data.data();
-    }
-
-
-    /**
-     * Get host data pointer
-     */
-    value_t const* h_data() const
-    {
-        return _h_data.data();
-    }
+//    /**
+//     * Get host data pointer
+//     */
+//    value_t* h_data()
+//    {
+//        return _h_data.data();
+//    }
+//
+//
+//    /**
+//     * Get host data pointer
+//     */
+//    value_t const* h_data() const
+//    {
+//        return _h_data.data();
+//    }
 
     /**
      * Get device data pointer
@@ -253,16 +253,16 @@ public:
 	 * Initialize matrix values such that all the elements of the principal diagonal
      * are ones and all other elements are zeros
      */
-    void fill_identity()
-    {
-        for (int j = 0; j < _n; j++)
-        {
-            for (int i = 0; i < _m; i++)
-            {
-                _h_data[i + j * _m] = host_value_t(i == j ? 1 : 0);
-            }
-        }
-    }
+//    void fill_identity()
+//    {
+//        for (int j = 0; j < _n; j++)
+//        {
+//            for (int i = 0; i < _m; i++)
+//            {
+//                _h_data[i + j * _m] = host_value_t(i == j ? 1 : 0);
+//            }
+//        }
+//    }
 
 
 	/**
@@ -270,17 +270,17 @@ public:
      * \p generator reference is assumed to be a nullary functor that returns
      * values convertible to the matrix \p value_t.
      */
-    template <typename T>
-    void fill_random(T & generator)
-    {
-        for (int j = 0; j < _n; j++)
-        {
-            for (int i = 0; i < _m; i++)
-            {
-                _h_data[i + j * _m] = (value_t) generator();
-            }
-        }
-    }
+//    template <typename T>
+//    void fill_random(T & generator)
+//    {
+//        for (int j = 0; j < _n; j++)
+//        {
+//            for (int i = 0; i < _m; i++)
+//            {
+//                _h_data[i + j * _m] = (value_t) generator();
+//            }
+//        }
+//    }
 
   void random() {
     for (int j = 0; j < _n; j++) {
