@@ -291,82 +291,82 @@ public:
   }
 
 
-    /**
-     * Element-wise matrix addition
-     */
-    matrix & operator+=(matrix const &mat)
-    {
-        for (int j = 0; j < _n; j++)
-        {
-            for (int i = 0; i < _m; i++)
-            {
-                _h_data[i + j * _m] += mat._h_data[i + j * _m];
-            }
-        }
-        return *this;
-    }
-
-    /**
-     * Element-wise matrix subtraction
-     */
-    matrix & operator-=(matrix const &mat)
-    {
-        for (int j = 0; j < _n; j++)
-        {
-            for (int i = 0; i < _m; i++)
-            {
-                _h_data[i + j * _m] -= mat._h_data[i + j * _m];
-            }
-        }
-        return *this;
-    }
-
-    //-----------------------------------------------------------------------------
-    // Output
-    //-----------------------------------------------------------------------------
-
-    /**
-     * Prints matrix in CSV to output stream
-     */
-    template <typename _hv_t>
-    std::ostream & write_matrix(std::ostream &out, _hv_t)
-    {
-        for (int i = 0; i < _m; i++)
-        {
-            for (int j = 0; j < _n; j++)
-            {
-                out << (j ? "," : "") << _h_data[i + j * _m];
-            }
-            out << "\n";
-        }
-        return out;
-    }
-
-
-    /**
-     * Prints matrix in CSV to output stream
-     */
-    std::ostream & write_matrix(std::ostream &out, int8_t)
-    {
-        for (int i = 0; i < _m; i++)
-        {
-            for (int j = 0; j < _n; j++)
-            {
-                out << (j ? "," : "") << int32_t(_h_data[i + j * _m]);
-            }
-            out << "\n";
-        }
-        return out;
-    }
-
-
-    /**
-     * Prints matrix in CSV to output stream
-     */
-    std::ostream & write_matrix(std::ostream &out)
-    {
-        return write_matrix(out, _h_data[0]);
-    }
+//    /**
+//     * Element-wise matrix addition
+//     */
+//    matrix & operator+=(matrix const &mat)
+//    {
+//        for (int j = 0; j < _n; j++)
+//        {
+//            for (int i = 0; i < _m; i++)
+//            {
+//                _h_data[i + j * _m] += mat._h_data[i + j * _m];
+//            }
+//        }
+//        return *this;
+//    }
+//
+//    /**
+//     * Element-wise matrix subtraction
+//     */
+//    matrix & operator-=(matrix const &mat)
+//    {
+//        for (int j = 0; j < _n; j++)
+//        {
+//            for (int i = 0; i < _m; i++)
+//            {
+//                _h_data[i + j * _m] -= mat._h_data[i + j * _m];
+//            }
+//        }
+//        return *this;
+//    }
+//
+//    //-----------------------------------------------------------------------------
+//    // Output
+//    //-----------------------------------------------------------------------------
+//
+//    /**
+//     * Prints matrix in CSV to output stream
+//     */
+//    template <typename _hv_t>
+//    std::ostream & write_matrix(std::ostream &out, _hv_t)
+//    {
+//        for (int i = 0; i < _m; i++)
+//        {
+//            for (int j = 0; j < _n; j++)
+//            {
+//                out << (j ? "," : "") << _h_data[i + j * _m];
+//            }
+//            out << "\n";
+//        }
+//        return out;
+//    }
+//
+//
+//    /**
+//     * Prints matrix in CSV to output stream
+//     */
+//    std::ostream & write_matrix(std::ostream &out, int8_t)
+//    {
+//        for (int i = 0; i < _m; i++)
+//        {
+//            for (int j = 0; j < _n; j++)
+//            {
+//                out << (j ? "," : "") << int32_t(_h_data[i + j * _m]);
+//            }
+//            out << "\n";
+//        }
+//        return out;
+//    }
+//
+//
+//    /**
+//     * Prints matrix in CSV to output stream
+//     */
+//    std::ostream & write_matrix(std::ostream &out)
+//    {
+//        return write_matrix(out, _h_data[0]);
+//    }
 
 
     //-----------------------------------------------------------------------------
