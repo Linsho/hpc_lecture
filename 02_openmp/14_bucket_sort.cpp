@@ -30,6 +30,7 @@ int main() {
     printf("%d ",key[i]);
   }
   printf("\n");
+<<<<<<< HEAD
   sort(key.begin(), key.end());
   for (int i=0; i<n; i++) {
     printf("%d ",key[i]);
@@ -55,6 +56,23 @@ int main() {
     int i = upper_bound(bucket.begin(), bucket.end(), j)-bucket.begin();
     key[j] = i;
     // O(log(range))
+=======
+
+  std::vector<int> bucket(range,0); 
+#pragma omp parallel for
+  for (int i=0; i<n; i++)
+#pragma omp atomic update
+    bucket[key[i]]++;
+  std::vector<int> offset(range,0);
+  for (int i=1; i<range; i++) 
+    offset[i] = offset[i-1] + bucket[i-1];
+#pragma omp parallel for
+  for (int i=0; i<range; i++) {
+    int j = offset[i];
+    for (; bucket[i]>0; bucket[i]--) {
+      key[j++] = i;
+    }
+>>>>>>> 9c52e5565b22e57d279d08fe3117ffbea63ea44f
   }
 
   for (int i=0; i<n; i++) {
